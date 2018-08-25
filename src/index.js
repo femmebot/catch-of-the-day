@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 // import StorePicker from './components/StorePicker/StorePicker';
 // import App from './App';
