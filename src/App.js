@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
+import Order from './components/Order/Order';
+import Inventory from './components/Inventory/Inventory';
+
 
 class App extends Component {
   render() {
@@ -8,17 +11,9 @@ class App extends Component {
       <div className="catch-of-the-day">
         <div className="menu">
           <Header/>
-          <p>Fish</p>
-          <p>Fish</p>
-          <p>Fish</p>
-          <p>Fish</p>
-          <p>Fish</p>
-          <h2>Inventory</h2>
-          <h2>Order</h2>
         </div>
-        <p>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Order/>
+        <Inventory/>
       </div>
     );
   }
