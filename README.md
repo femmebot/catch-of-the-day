@@ -1,2 +1,0 @@
-# catch-of-the-day
-🐟
