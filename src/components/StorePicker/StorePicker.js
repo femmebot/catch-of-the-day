@@ -19,7 +19,7 @@ import { getFunName } from '../../helpers';
    //   // change page to /store/whatever-string-input
    // }
 
-   goToStore = event => {
+   goToStore = (event) => {
      // Stop form from submitting
      event.preventDefault();
      // get text from input
