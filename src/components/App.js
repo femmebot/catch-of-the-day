@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Header from './Header/Header';
 import Order from './Order/Order';
 import Inventory from './Inventory/Inventory';
+import sampleFishes from '../assets/sample-fishes';
 
 
 class App extends Component {
 
+  // initialize state
   state = {
     fishes: {},
     order: {}
@@ -16,11 +18,18 @@ class App extends Component {
     const fishesCopy = {...this.state.fishes};
     // 2. add fish to fishes variable using timestamp to create unique key
     fishesCopy[`fish${Date.now()}`] = fish;
-    // 3. update fishes state with new fish
+    // 3. set the new fishes object to state
     this.setState({
       fishes: fishesCopy
     })
     console.log(`Inventory contains ${Object.keys(this.state.fishes).length + 1} fish!`);
+  };
+
+  loadSampleFishes = () => {
+    this.setState(
+      {fishes: sampleFishes}
+    );
+    console.log(this.state.fishes);
   };
 
   render() {
@@ -30,7 +39,9 @@ class App extends Component {
           <Header tagline="Fresh Seafood Market"/>
         </div>
         <Order/>
-        <Inventory addFish={this.addFish}/>
+        <Inventory
+          addFish={this.addFish}
+          loadSampleFishes={this.loadSampleFishes}/>
       </div>
     );
   }
