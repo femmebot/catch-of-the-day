@@ -20,9 +20,9 @@ class App extends Component {
     // 2. add fish to fishes variable using timestamp to create unique key
     fishesCopy[`fish${Date.now()}`] = fish;
     // 3. set the new fishes object to state
-    this.setState({
-      fishes: fishesCopy
-    })
+    this.setState(
+      {fishes: fishesCopy}
+    )
     console.log(`Inventory contains ${Object.keys(this.state.fishes).length + 1} fish!`);
   };
 
@@ -33,6 +33,17 @@ class App extends Component {
     console.log(this.state.fishes);
   };
 
+  addToOrder = (key) => {
+    // 1. Make a copy of the state
+    const orderCopy = {...this.state.order};
+    // 2. Add fish to order or increment to an existing order item
+    orderCopy[key] = orderCopy[key] + 1 || 1;
+    // 3. set state to update state
+    this.setState(
+      { order: orderCopy }
+    )
+  }
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -40,15 +51,21 @@ class App extends Component {
           <Header tagline="Fresh Seafood Market"/>
           <ul className="fishes">
             {/*{ Object.keys(this.state.fishes).map(key => <li key={key}> {key} </li>) }*/}
+            {/* can't access key so we need to pass key as index prop */}
             { Object.keys(this.state.fishes).map ( key =>
-              <Fish key={key} fishDetails={this.state.fishes[key]}/>
+              <Fish
+                key={key}
+                index={key}
+                fishDetails={this.state.fishes[key]}
+                addToOrder={this.addToOrder}/>
             ) }
           </ul>
         </div>
-        <Order/>
+        {/* <Order {...this.state} /> */}
+        <Order fishes={this.state.fishes} order={this.state.order }/>
         <Inventory
-          addFish={this.addFish}
-          loadSampleFishes={this.loadSampleFishes}/>
+          addFish = {this.addFish}
+          loadSampleFishes = {this.loadSampleFishes}/>
       </div>
     );
   }

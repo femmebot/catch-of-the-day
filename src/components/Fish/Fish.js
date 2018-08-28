@@ -3,10 +3,18 @@ import { formatPrice } from '../../helpers';
 
 class Fish extends Component {
 
+  // need to pass key w/c is stored as the index prop to addToOrder function
+  clickHandler = () => {
+    this.props.addToOrder(this.props.index);
+  }
+
   render () {
 
     // use destructuring to assign this.props.fishDetails.--- to a variable and minimize typing
     const { image, name, price, desc, status } = this.props.fishDetails;
+
+    // const isAvailable = this.props.fishDetails.status === 'available';
+    const isAvailable = status === 'available';
 
     return (
       <li className="menu-fish">
@@ -18,8 +26,9 @@ class Fish extends Component {
            <span className="price">{formatPrice(price)}</span>
          </h3>
          <p>{desc}</p>
-         <button>Add to Cart</button>
-
+         <button disabled={ !isAvailable } onClick={this.clickHandler}>
+           { isAvailable ? 'Add to Cart!' : 'Sold Out' }
+         </button>
       </li>
     )
   }
