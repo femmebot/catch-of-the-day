@@ -4,6 +4,7 @@ import Order from './Order/Order';
 import Inventory from './Inventory/Inventory';
 import sampleFishes from '../assets/sample-fishes';
 import Fish from './Fish/Fish';
+import base from '../base';
 
 
 class App extends Component {
@@ -13,6 +14,22 @@ class App extends Component {
     fishes: {},
     order: {}
   };
+
+componentDidMount(){
+  // console.log('MOUNTED!');
+  // destructure this.props.match.params
+  const { params } = this.props.match;
+  this.ref = base.syncState(`${params.storeID}/fishes`, {
+    context: this,
+    state: 'fishes'
+  })
+}
+
+// unmount to prevent memory leakage
+componentWillUnmount(){
+  // console.log('UNMOUNTED!!!!');
+  base.removeBinding(this.ref);
+}
 
   addFish = (fish) => {
     // 1. make a copy of existing state
@@ -34,7 +51,7 @@ class App extends Component {
   };
 
   addToOrder = (key) => {
-    // 1. Make a copy of the state
+    // 1. Make a copy of the order state
     const orderCopy = {...this.state.order};
     // 2. Add fish to order or increment to an existing order item
     orderCopy[key] = orderCopy[key] + 1 || 1;
