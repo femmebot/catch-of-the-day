@@ -81,8 +81,19 @@ class App extends Component {
     // 3. set state to update state
     this.setState(
       { order: orderCopy }
-    )
-  }
+    );
+  };
+
+  deleteFromOrder = (key) => {
+    // 1. Make a copy of order
+    const orderCopy = {...this.state.order};
+    // 2. Remove fish by deleting (instead of setting to null since it's not being mirrored in Firebase)
+    delete orderCopy[key];
+    // 3. set state
+    this.setState(
+      { order: orderCopy }
+    );
+  };
 
   render() {
     return (
@@ -102,7 +113,10 @@ class App extends Component {
           </ul>
         </div>
         {/* <Order {...this.state} /> */}
-        <Order fishes={this.state.fishes} order={this.state.order }/>
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order }
+          deleteFromOrder = {this.deleteFromOrder}/>
         <Inventory
           addFish = {this.addFish}
           updateFish = {this.updateFish}
