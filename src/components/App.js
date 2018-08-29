@@ -15,21 +15,21 @@ class App extends Component {
     order: {}
   };
 
-componentDidMount(){
-  // console.log('MOUNTED!');
-  // destructure this.props.match.params
-  const { params } = this.props.match;
-  this.ref = base.syncState(`${params.storeID}/fishes`, {
-    context: this,
-    state: 'fishes'
-  })
-}
+  componentDidMount(){
+    // console.log('MOUNTED!');
+    // destructure this.props.match.params
+    const { params } = this.props.match;
+    this.ref = base.syncState(`${params.storeID}/fishes`, {
+      context: this,
+      state: 'fishes'
+    })
+  }
 
-// unmount to prevent memory leakage
-componentWillUnmount(){
-  // console.log('UNMOUNTED!!!!');
-  base.removeBinding(this.ref);
-}
+  // unmount to prevent memory leakage
+  componentWillUnmount(){
+    // console.log('UNMOUNTED!!!!');
+    base.removeBinding(this.ref);
+  }
 
   addFish = (fish) => {
     // 1. make a copy of existing state
@@ -51,6 +51,18 @@ componentWillUnmount(){
     // 3. set State
     this.setState(
       {fishes: fishesCopy }
+    );
+  }
+
+  deleteFish = (key) => {
+    // 1. Make a copy of fishes state
+    const fishesCopy = { ...this.state.fishes }
+    // 2. Update(remove) state
+    // Can't just delete; Must set to null for Firebase
+    fishesCopy[key] = null;
+    // 3. Update state
+    this.setState(
+      {fishes: fishesCopy}
     );
   }
 
@@ -95,7 +107,8 @@ componentWillUnmount(){
           addFish = {this.addFish}
           updateFish = {this.updateFish}
           loadSampleFishes = {this.loadSampleFishes}
-          fishes = {this.state.fishes}/>
+          fishes = {this.state.fishes}
+          deleteFish = {this.deleteFish}/>
       </div>
     );
   }

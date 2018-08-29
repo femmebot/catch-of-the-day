@@ -16,7 +16,8 @@ class Inventory extends Component {
             status = {this.props.fishes[key].status}
             desc = {this.props.fishes[key].desc}
             image = {this.props.fishes[key].image}
-            updateFish={this.props.updateFish}/>
+            updateFish={this.props.updateFish}
+            deleteFish={this.props.deleteFish}/>
         ) }
         <AddFishForm addFish={this.props.addFish}/>
         <button onClick={this.props.loadSampleFishes}>Load sample fishes</button>
