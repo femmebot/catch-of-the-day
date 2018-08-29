@@ -43,6 +43,17 @@ componentWillUnmount(){
     console.log(`Inventory contains ${Object.keys(this.state.fishes).length + 1} fish!`);
   };
 
+  updateFish = (key, updatedFish) => {
+    // 1. take a copy of the current state
+    const fishesCopy = {...this.state.fishes};
+    // 2. update the copy with the updated fish
+    fishesCopy[key] = updatedFish;
+    // 3. set State
+    this.setState(
+      {fishes: fishesCopy }
+    );
+  }
+
   loadSampleFishes = () => {
     this.setState(
       {fishes: sampleFishes}
@@ -82,7 +93,9 @@ componentWillUnmount(){
         <Order fishes={this.state.fishes} order={this.state.order }/>
         <Inventory
           addFish = {this.addFish}
-          loadSampleFishes = {this.loadSampleFishes}/>
+          updateFish = {this.updateFish}
+          loadSampleFishes = {this.loadSampleFishes}
+          fishes = {this.state.fishes}/>
       </div>
     );
   }
