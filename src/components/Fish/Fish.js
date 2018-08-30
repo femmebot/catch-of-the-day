@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { formatPrice } from '../../helpers';
 
 class Fish extends Component {
 
+  static propTypes = {
+    details: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      status: PropTypes.string,
+      desc: PropTypes.string,
+      price: PropTypes.number
+    }),
+    addToOrder: PropTypes.func
+  };
+
   // need to pass key w/c is stored as the index prop to addToOrder function
-  clickHandler = () => {
-    this.props.addToOrder(this.props.index);
-  }
+  // clickHandler = () => {
+  //   this.props.addToOrder(this.props.index);
+  // }
 
   render () {
 
@@ -26,7 +38,11 @@ class Fish extends Component {
            <span className="price">{formatPrice(price)}</span>
          </h3>
          <p>{desc}</p>
-         <button disabled={ !isAvailable } onClick={this.clickHandler}>
+         <button
+           disabled={ !isAvailable }
+           // onClick={this.clickHandler}
+           onClick={() => this.props.addToOrder(this.props.index)}
+           >
            { isAvailable ? 'Add to Cart!' : 'Sold Out' }
          </button>
       </li>

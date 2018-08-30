@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { formatPrice } from '../../helpers';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class Order extends Component {
+
+  static PropTypes = {
+    fishes: PropTypes.object,
+    order: PropTypes.object
+  }
 
   renderOrder = key => {
     const fish = this.props.fishes[key];
     const count = this.props.order[key];
     const isAvailable = fish && fish.status === "available";
 
-    // Make sure fish is loaded before we continue
+    // Make sure fish exists/is loaded before we continue
     if (!fish) return null;
 
     if(!isAvailable) {

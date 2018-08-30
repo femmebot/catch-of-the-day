@@ -13,14 +13,12 @@
   padding: 2rem 0 !important;
 }
 .count-enter {
-  background: #ff0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
 }
 .count-enter.count-enter-active {
-  background: #fff;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
