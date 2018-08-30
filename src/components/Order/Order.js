@@ -27,16 +27,17 @@ class Order extends Component {
       <CSSTransition classNames="order" key={key} timeout={{ enter: 250, exit: 250}}>
 
           <li key={key}>
-            <span>
+            <span class="orderItem">
               <TransitionGroup component="span" className="count">
                 <CSSTransition classNames="count" key={count} timeout={{enter: 5000, exit: 5000}}>
                   <span>{count} </span>
                 </CSSTransition>
               </TransitionGroup>
-              lbs {fish.name}
-              {formatPrice(count * fish.price)}
+              { count > 1 ? "lbs" : "lb" } {fish.name}
+            </span>
+
+              <span className="cost">{formatPrice(count * fish.price)}</span>
               <button onClick={() => this.props.deleteFromOrder(key)}>&times;</button>
-              </span>
           </li>
 
       </CSSTransition>
@@ -77,7 +78,7 @@ class Order extends Component {
           ) }
         </ul>*/}
         <div className="total">
-          <strong>{formatPrice(total)}</strong>
+          <strong className="totalPrice">{formatPrice(total)}</strong>
         </div>
       </div>
     )

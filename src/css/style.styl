@@ -116,17 +116,17 @@ ul.order
   li
     border-bottom 1px solid black
     padding 2rem 0
-    display flex
-    font-size 1.4rem
+    display float
+    font-size 1.325rem
     justify-content space-between
     align-items center
     &:hover
       // padding 1rem 0
       button
-        display inline
+        color red
     button
       border 0
-      display none
+      display block
       line-height 1
       padding 0
     &.total
@@ -136,8 +136,13 @@ ul.order
     &.unavailable
       text-decoration line-through
       background lighten(red, 80%)
-    .price
-      font-size 1.2rem
+    .orderItem
+      width 190px
+      float left
+    .cost
+      font-family 'IBM Plex Mono', sans-serif
+      width 60px
+      float left
     span.count
       position relative
       overflow hidden
@@ -146,6 +151,11 @@ ul.order
       span
         display inline-block
         // transition all 0.5s
+
+.totalPrice
+  display block
+  padding 10px 20px 20px 0
+  float right
 
 .order-title
   text-align center

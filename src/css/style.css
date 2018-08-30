@@ -12,17 +12,6 @@
           transform: translateX(0);
   padding: 2rem 0 !important;
 }
-.order-exit {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-.order-exit.order-exit-active {
-  -webkit-transform: translateX(120%);
-          transform: translateX(120%);
-  padding: 0;
-}
 .count-enter {
   background: #ff0;
   -webkit-transition: 0.5s;
@@ -36,7 +25,7 @@
           transform: translateY(0);
 }
 .count-exit {
-  background: #ff0;
+  background: #fff;
   -webkit-transform: translateY(0);
           transform: translateY(0);
   -webkit-transition: 0.5s;
@@ -47,8 +36,8 @@
 }
 .count-exit.count-exit-active {
   background: #fff;
-  -webkit-transform: translateY(-100%) scale(3);
-          transform: translateY(-100%) scale(3);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
 @font-face {
   font-family: "haymakerregular";
@@ -234,7 +223,7 @@ body {
   background: #d4d4d4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 2rem;
 }
 h1 {
@@ -258,6 +247,9 @@ h2 {
 }
 h3 {
   font-size: 3rem;
+}
+p {
+  line-height: 1.325;
 }
 header.top {
   text-align: center;
@@ -404,10 +396,8 @@ ul {
 ul.order li {
   border-bottom: 1px solid #000;
   padding: 2rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.4rem;
+  display: float;
+  font-size: 1.325rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -416,11 +406,11 @@ ul.order li {
           align-items: center;
 }
 ul.order li:hover button {
-  display: inline;
+  color: #e52;
 }
 ul.order li button {
   border: 0;
-  display: none;
+  display: block;
   line-height: 1;
   padding: 0;
 }
@@ -433,8 +423,14 @@ ul.order li.unavailable {
   text-decoration: line-through;
   background: #fcddd3;
 }
-ul.order li .price {
-  font-size: 1.2rem;
+ul.order li .orderItem {
+  width: 190px;
+  float: left;
+}
+ul.order li .cost {
+  font-family: 'IBM Plex Mono', sans-serif;
+  width: 60px;
+  float: left;
 }
 ul.order li span.count {
   position: relative;
@@ -444,6 +440,11 @@ ul.order li span.count {
 }
 ul.order li span.count span {
   display: inline-block;
+}
+.totalPrice {
+  display: block;
+  padding: 10px 20px 20px 0;
+  float: right;
 }
 .order-title {
   text-align: center;
@@ -597,7 +598,7 @@ input[type=submit].warning:after {
 }
 button.success:after,
 input[type=submit].success:after {
-  background: #2dc22d;
+  background: #008000;
 }
 button.github,
 input[type=submit].github,
