@@ -1,7 +1,12 @@
 import React, { Component , Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { getFunName } from '../../helpers';
 
  class StorePicker extends Component {
+
+   static PropTypes = {
+     history: PropTypes.object
+   };
 
    // bind method to component
    // constructor() {
