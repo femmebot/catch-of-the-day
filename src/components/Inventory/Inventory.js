@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddFishForm from '../AddFishForm/AddFishForm';
 import EditFishForm from '../EditFishForm/EditFishForm';
+import Login from '../Login/Login';
 
 class Inventory extends Component {
 
@@ -20,7 +21,15 @@ class Inventory extends Component {
     loadSampleFishes: PropTypes.func
   };
 
+  authenticate = (provider) => {
+    alert(provider);
+  }
+
   render () {
+
+    return <Login authenticate={this.authenticate}/>
+
+    // eslint-disable-next-line
     return (
       <div className="inventory">
         <h2>Inventory</h2>
