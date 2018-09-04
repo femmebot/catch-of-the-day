@@ -4,7 +4,7 @@ import { getFunName } from '../../helpers';
 
  class StorePicker extends Component {
 
-   static PropTypes = {
+   static propTypes = {
      history: PropTypes.object
    };
 

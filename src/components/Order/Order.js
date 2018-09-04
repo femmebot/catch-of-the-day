@@ -5,10 +5,10 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class Order extends Component {
 
-  static PropTypes = {
+  static propTypes = {
     fishes: PropTypes.object,
     order: PropTypes.object
-  }
+  };
 
   renderOrder = key => {
     const fish = this.props.fishes[key];
@@ -33,7 +33,7 @@ class Order extends Component {
       <CSSTransition classNames="order" key={key} timeout={{ enter: 250, exit: 250}}>
 
           <li key={key}>
-            <span class="orderItem">
+            <span className="orderItem">
               <TransitionGroup component="span" className="count">
                 <CSSTransition classNames="count" key={count} timeout={{enter: 5000, exit: 5000}}>
                   <span>{count} </span>
